@@ -18,21 +18,92 @@ public class Kayttoliittyma {
         while (true) {
 
             System.out.println("Valitse mitä haluat käsitellä:");
-            System.out.println("(1) Viestialueet");
+            System.out.println("(1) Alueet");
             System.out.println("(2) Viestit");
             System.out.println("(3) Käyttäjät");
             System.out.println("(0) Lopeta");
             System.out.print("> ");
 
             String vastaus = lukija.nextLine();
-            
+
             if (vastaus.equals("0")) {
                 break;
             }
-            
+            if (vastaus.equals("1")) {
+                alueet();
+            }
+            if (vastaus.equals("2")) {
+                viestit();
+            }
+            if (vastaus.equals("3")) {
+                kayttajat();
+            }
+
             // tekstikäyttöliittymän perusrunko, jokaisen valinnan alle 
             // näytä/lisää/poista, SQL-toteutus
-
         }
     }
+
+    private void alueet() {
+
+        while (true) {
+            System.out.println("Alueet:");
+            System.out.println("(1) Listaa alueet");
+            System.out.println("(0) Poistu");
+            System.out.println("> ");
+
+            String vastaus = lukija.nextLine();
+
+            if (vastaus.equals("0")) {
+                break;
+            }
+            if (vastaus.equals("1")) {
+
+                // hae ja tulosta näytölle alueet tietokannasta
+            }
+        }
+    }
+
+    private void viestit() {
+
+        while (true) {
+            System.out.println("Viestit:");
+            System.out.println("(1) Listaa viestit");
+            System.out.println("(0) Poistu");
+            System.out.println("> ");
+
+            String vastaus = lukija.nextLine();
+
+            if (vastaus.equals("0")) {
+                break;
+            }
+
+            if (vastaus.equals("1")) {
+
+                // hae ja tulosta kaikki viestit tietokannasta 
+            }
+        }
+    }
+
+    private void kayttajat() {
+
+        while (true) {
+            System.out.println("Käyttäjät:");
+            System.out.println("(1) Listaa käyttäjät");
+            System.out.println("(0) Poistu");
+            System.out.println("> ");
+
+            String vastaus = lukija.nextLine();
+
+            if (vastaus.equals("0")) {
+                break;
+            }
+
+            if (vastaus.equals("1")) {
+
+                // hae ja tulosta kaikki käyttäjät tietokannasta 
+            }
+        }
+    }
+
 }
