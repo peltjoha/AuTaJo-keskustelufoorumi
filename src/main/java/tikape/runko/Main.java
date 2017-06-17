@@ -14,7 +14,7 @@ public class Main {
         Database database = new Database("jdbc:sqlite:autajo.db");
         database.init();
 
-//        ViestialueDao viestialueDao = new ViestialueDao(database);
+//        AlueDao alueDao = new AlueDao(database);
         
         // muut Dao-oliot tietokantatauluille etc
         
