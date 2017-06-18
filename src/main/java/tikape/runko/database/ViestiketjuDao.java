@@ -15,6 +15,10 @@ import tikape.runko.domain.Viestiketju;
 public class ViestiketjuDao implements Dao<Viestiketju, Integer> {
 
     private Database database;
+    
+    public ViestiketjuDao(Database database) {
+        this.database = database;
+    }
 
     @Override
     public Viestiketju findOne(Integer key) throws SQLException {
