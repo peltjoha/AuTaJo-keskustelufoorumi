@@ -6,7 +6,6 @@ import spark.ModelAndView;
 import static spark.Spark.*;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 import tikape.runko.database.Database;
-import tikape.runko.database.OpiskelijaDao;
 
 public class Main {
 
@@ -14,9 +13,7 @@ public class Main {
         Database database = new Database("jdbc:sqlite:autajo.db");
         database.init();
 
-//        AlueDao alueDao = new AlueDao(database);
-        
-        // muut Dao-oliot tietokantatauluille etc
+        // Dao-oliot tietokantatauluille etc tarvittaessa
         
         // Tekstikäyttöliittymän käynnistys
         
