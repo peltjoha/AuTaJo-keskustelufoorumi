@@ -30,8 +30,19 @@ public class Viesti {
     }
 
     public String getTimestamp() {
+<<<<<<< HEAD
 
         return timestamp; // palautetaan tässä vain olemassaoleva aikaleima
+=======
+        
+        // palauttaa kyselyhetken aikaleiman eikä viestin?
+        
+        // Saattaa olla, tää on suoraan sanottuna vähän tällasta trial & error meininkiä mulla
+        // Ootko kartalla, miten tää pitäis käytännössä toteuttaa? -J
+        
+        String timestamp = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date());
+        return timestamp;
+>>>>>>> 216861ba8f56d5e021ff5281afc2a31118e2018c
     }
 
     public void setTimestamp(String timestamp) {
