@@ -31,9 +31,7 @@ public class Viesti {
 
     public String getTimestamp() {
 
-        // palauttaa kyselyhetken aikaleiman eikä viestin?
-        String timestamp = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date());
-        return timestamp;
+        return timestamp; // palautetaan tässä vain olemassaoleva aikaleima
     }
 
     public void setTimestamp(String timestamp) {
