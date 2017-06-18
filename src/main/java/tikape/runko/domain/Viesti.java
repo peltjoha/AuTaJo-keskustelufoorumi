@@ -29,6 +29,9 @@ public class Viesti {
         
         // palauttaa kyselyhetken aikaleiman eikä viestin?
         
+        // Saattaa olla, tää on suoraan sanottuna vähän tällasta trial & error meininkiä mulla
+        // Ootko kartalla, miten tää pitäis käytännössä toteuttaa? -J
+        
         String timestamp = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date());
         return timestamp;
     }
