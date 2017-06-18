@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import tikape.runko.domain.Kayttaja;
 import tikape.runko.domain.Viesti;
+import tikape.runko.domain.Viestiketju;
 
 /**
  *
@@ -15,9 +17,13 @@ import tikape.runko.domain.Viesti;
 public class ViestiDao implements Dao<Viesti, Integer> {
 
     private Database database;
-    
-    public ViestiDao(Database database) {
+    private ViestiketjuDao viestiketjuDao;
+    private KayttajaDao kayttajaDao;
+
+    public ViestiDao(Database database, ViestiketjuDao viestiketjuDao, KayttajaDao kayttajaDao) {
         this.database = database;
+        this.viestiketjuDao = viestiketjuDao;
+        this.kayttajaDao = kayttajaDao;
     }
 
     @Override
@@ -35,12 +41,13 @@ public class ViestiDao implements Dao<Viesti, Integer> {
             return null;
         }
 
+        Integer id = rs.getInt("id");
         String viesti = rs.getString("viesti");
         String timestamp = rs.getString("timestamp");
-        String kayttaja = rs.getString("kayttaja");
-        String viestiketju = rs.getString("viestiketju");
+        Kayttaja kayttaja = this.kayttajaDao.findOne(rs.getString("kayttaja"));
+        Viestiketju viestiketju = this.viestiketjuDao.findOne(rs.getString("viestiketju"));
 
-        Viesti v = new Viesti(viesti, timestamp, kayttaja, viestiketju);
+        Viesti v = new Viesti(id, viesti, timestamp, kayttaja, viestiketju);
 
         rs.close();
         stmt.close();
@@ -56,15 +63,16 @@ public class ViestiDao implements Dao<Viesti, Integer> {
 
         ResultSet rs = stmt.executeQuery();
         List<Viesti> viestit = new ArrayList<>();
-        
+
         while (rs.next()) {
-            
+
+            Integer id = rs.getInt("id");
             String viesti = rs.getString("viesti");
             String timestamp = rs.getString("timestamp");
-            String kayttaja = rs.getString("kayttaja");
-            String viestiketju = rs.getString("viestiketju");
+            Kayttaja kayttaja = this.kayttajaDao.findOne(rs.getString("kayttaja"));
+            Viestiketju viestiketju = this.viestiketjuDao.findOne(rs.getString("viestiketju"));
 
-            viestit.add(new Viesti(viesti, timestamp, kayttaja, viestiketju));
+            viestit.add(new Viesti(id, viesti, timestamp, kayttaja, viestiketju));
         }
 
         rs.close();

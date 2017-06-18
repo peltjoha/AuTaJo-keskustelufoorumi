@@ -4,21 +4,25 @@
  * and open the template in the editor.
  */
 package tikape.runko.domain;
+
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 /**
  *
  * @author jipel
  */
 public class Viesti {
-//    private Integer id;
+
+    private Integer id;
     private String viesti;
     private String timestamp;
-    private String kayttaja;
-    private String viestiketju;
+    private Kayttaja kayttaja;
+    private Viestiketju viestiketju;
 
-    public Viesti(String viesti, String timestamp, String kayttaja, String viestiketju) {
+    public Viesti(Integer id, String viesti, String timestamp, Kayttaja kayttaja, Viestiketju viestiketju) {
+        this.id = id;
         this.viesti = viesti;
         this.timestamp = timestamp;
         this.kayttaja = kayttaja;
@@ -26,13 +30,12 @@ public class Viesti {
     }
 
     public String getTimestamp() {
-        
+
         // palauttaa kyselyhetken aikaleiman eikä viestin?
-        
         String timestamp = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date());
         return timestamp;
     }
-    
+
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
@@ -44,20 +47,22 @@ public class Viesti {
     public void setViesti(String viesti) {
         this.viesti = viesti;
     }
-    
-    public String getKayttaja() {
+
+    public Kayttaja getKayttaja() {
+
         return kayttaja;
     }
 
-    public void setKayttaja(String kayttaja) {
+    public void setKayttaja(Kayttaja kayttaja) {
         this.kayttaja = kayttaja;
     }
-    
-    public String getViestiketju() {
+
+    public Viestiketju getViestiketju() {
+
         return viestiketju;
     }
 
-    public void setViestiketju(String viestiketju) {
+    public void setViestiketju(Viestiketju viestiketju) {
         this.viestiketju = viestiketju;
     }
 
