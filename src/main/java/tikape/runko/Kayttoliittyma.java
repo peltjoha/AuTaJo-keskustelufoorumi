@@ -19,8 +19,9 @@ public class Kayttoliittyma {
 
             System.out.println("Valitse mitä haluat käsitellä:");
             System.out.println("(1) Alueet");
-            System.out.println("(2) Viestit");
-            System.out.println("(3) Käyttäjät");
+            System.out.println("(2) Viestiketjut");
+            System.out.println("(3) Viestit");
+            System.out.println("(4) Käyttäjät");
             System.out.println("(0) Lopeta");
             System.out.print("> ");
 
@@ -33,9 +34,12 @@ public class Kayttoliittyma {
                 alueet();
             }
             if (vastaus.equals("2")) {
-                viestit();
+                viestiketjut();
             }
             if (vastaus.equals("3")) {
+                viestit();
+            }
+            if (vastaus.equals("4")) {
                 kayttajat();
             }
 
@@ -60,6 +64,26 @@ public class Kayttoliittyma {
             if (vastaus.equals("1")) {
 
                 // hae ja tulosta näytölle alueet tietokannasta
+            }
+        }
+    }
+
+    private void viestiketjut() {
+
+        while (true) {
+            System.out.println("Viestiketjut:");
+            System.out.println("(1) Listaa viestiketjut");
+            System.out.println("(0) Poistu");
+            System.out.println("> ");
+
+            String vastaus = lukija.nextLine();
+
+            if (vastaus.equals("0")) {
+                break;
+            }
+            if (vastaus.equals("1")) {
+
+                // hae ja tulosta näytölle viestiketjut tietokannasta
             }
         }
     }
