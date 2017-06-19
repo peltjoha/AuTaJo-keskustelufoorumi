@@ -44,8 +44,8 @@ public class ViestiDao implements Dao<Viesti, Integer> {
         Integer id = rs.getInt("id");
         String viesti = rs.getString("viesti");
         String timestamp = rs.getString("timestamp");
-        Kayttaja kayttaja = this.kayttajaDao.findOne(rs.getString("kayttaja"));
-        Viestiketju viestiketju = this.viestiketjuDao.findOne(rs.getString("viestiketju"));
+        Kayttaja kayttaja = this.kayttajaDao.findOne(rs.getInt("kayttaja"));
+        Viestiketju viestiketju = this.viestiketjuDao.findOne(rs.getInt("viestiketju"));
 
         Viesti v = new Viesti(id, viesti, timestamp, kayttaja, viestiketju);
 
@@ -69,8 +69,8 @@ public class ViestiDao implements Dao<Viesti, Integer> {
             Integer id = rs.getInt("id");
             String viesti = rs.getString("viesti");
             String timestamp = rs.getString("timestamp");
-            Kayttaja kayttaja = this.kayttajaDao.findOne(rs.getString("kayttaja"));
-            Viestiketju viestiketju = this.viestiketjuDao.findOne(rs.getString("viestiketju"));
+            Kayttaja kayttaja = this.kayttajaDao.findOne(rs.getInt("kayttaja"));
+            Viestiketju viestiketju = this.viestiketjuDao.findOne(rs.getInt("viestiketju"));
 
             viestit.add(new Viesti(id, viesti, timestamp, kayttaja, viestiketju));
         }
