@@ -51,45 +51,39 @@ public class Main {
             map.put("alue", alueDao.findOne(Integer.parseInt(req.params("id"))));
 
             return new ModelAndView(map, "alue");
-<form method="POST" action="/opiskelijat">
-Nimi:<br/>
-<input type="text" name="nimi"/><br/>
-Osoite:<br/>
-<input type="text" name="osoite"/><br/>
-<input type="submit" value="Lisää opiskelija"/>
-</form>
+//                <form method="POST" action="/alueet/:id">
+//                Otsikko:<br/>
+//                <input type="text" name="otsikko"/><br/>
+//                Viesti:<br/>
+//                <input type="text" name="viesti"/><br/>
+//                Lähettäjä:<br/>
+//                <input type="text" name="kayttaja"/><br/>
+//                <input type="submit" value="Luo keskustelunavaus"/>
+//                </form>;
         }, new ThymeleafTemplateEngine());
         
-        // alueen luominen
-        post("/alueet", (req, res) -> {
-            String nimi = req.queryParams("nimi");
-
-            User user = userDao.findByUsernameAndPassword(username, password);
-
-            if (user == null) {
-                res.redirect("/");
-                return "";
-            }
-
-            req.session(true).attribute("user", user);
-            res.redirect("/s/users/" + user.getId());
-            return "";
-        });
-        
-        // uuden viestin luominen
-        post("/alueet/:id", (req, res) -> {
-            String viesti = req.queryParams("viesti");
-
-            User user = userDao.findByUsernameAndPassword(username, password);
-
-            if (user == null) {
-                res.redirect("/");
-                return "";
-            }
-
-            req.session(true).attribute("user", user);
-            res.redirect("/s/users/" + user.getId());
-            return "";
-        });
+//        // alueen luominen
+//        post("/alueet", (req, res) -> {
+//            String nimi = req.queryParams("nimi");
+//
+//            Alue alue = AlueDao.setNimi(nimi);
+//            
+//            res.redirect("/");
+//
+//        });
+//        
+//        // uuden keskustelunavauksen luominen
+//        post("/alueet/:id", (req, res) -> {
+//            String otsikko = req.queryParams("otsikko");
+//            String viesti = req.queryParams("viesti");
+//            String kayttaja = req.queryParams("kayttaja");
+//
+//            Viestiketju viestiketju = ViestiketjuDao.setOtsikko(otsikko);
+//            Viesti viesti = ViestiDao.setViesti(viesti);
+//            Kayttaja kayttaja = KayttajaDao.setNimimerkki(kayttaja);
+//            
+//            res.redirect("/s/alueet/";
+//
+//        });
     }
 }
