@@ -6,7 +6,9 @@
 package tikape.runko.domain;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -18,12 +20,14 @@ public class Alue {
     private String nimi;
     private Integer viestien_lm;
     private String viimeisin_viesti;
+    private List<Viestiketju> viestiketjut;
 
-    public Alue(Integer id, String nimi, Integer viestien_lm, String viimeisin_viesti) {
+    public Alue(Integer id, String nimi, Integer viestien_lm, String viimeisin_viesti, List<Viestiketju> viestiketjut) {
         this.id = id;
         this.nimi = nimi;
         this.viestien_lm = viestien_lm;
-        this.viimeisin_viesti = viimeisin_viesti;      
+        this.viimeisin_viesti = viimeisin_viesti;   
+        this.viestiketjut = viestiketjut;
     }
 
     public Integer getId() {
@@ -56,6 +60,11 @@ public class Alue {
     
     public void setViimeisin_viesti(String viimeisin_viesti) {
         this.viimeisin_viesti = viimeisin_viesti;
+    }
+
+    @Override
+    public String toString() {
+        return "Alue{" + "id=" + id + ", nimi=" + nimi + ", viestien_lm=" + viestien_lm + ", viimeisin_viesti=" + viimeisin_viesti + ", viestiketjut=" + viestiketjut + '}';
     }
 
 }

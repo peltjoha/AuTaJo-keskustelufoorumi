@@ -17,15 +17,16 @@ public class Main {
         Database database = new Database("jdbc:sqlite:autajo.db");
         database.init();
 
-        // Dao-oliot tietokantatauluille etc tarvittaessa
-        AlueDao alueDao = new AlueDao(database);
-        
         // Tekstikäyttöliittymän käynnistys
         
         Scanner lukija = new Scanner(System.in);
         Kayttoliittyma kayttis = new Kayttoliittyma(database, lukija);
         
         kayttis.kaynnista();
+        
+        ViestiDao viestiDao = new ViestiDao(database);
+        ViestiketjuDao viestiketjuDao = new ViestiketjuDao(database, viestiDao);
+        AlueDao alueDao = new AlueDao(database, viestiketjuDao);
 
         get("/", (req, res) -> {
             HashMap map = new HashMap<>();

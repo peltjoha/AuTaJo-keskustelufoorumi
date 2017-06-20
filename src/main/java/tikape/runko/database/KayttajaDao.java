@@ -12,13 +12,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import tikape.runko.domain.Kayttaja;
+import tikape.runko.domain.Viesti;
 
 public class KayttajaDao implements Dao<Kayttaja, Integer> {
-    
-    private Database database;
 
-    public KayttajaDao(Database database) {
+    private Database database;
+    private ViestiDao viestiDao;
+
+    public KayttajaDao(Database database, ViestiDao viestiDao) {
         this.database = database;
+        this.viestiDao = viestiDao;
     }
 
     @Override
@@ -36,7 +39,17 @@ public class KayttajaDao implements Dao<Kayttaja, Integer> {
         Integer id = rs.getInt("id");
         String nimimerkki = rs.getString("nimimerkki");
 
-        Kayttaja k = new Kayttaja(id, nimimerkki);
+        List<Viesti> kaikkiViestit = viestiDao.findAll();
+        List<Viesti> kayttajanViestit = new ArrayList<>();
+
+        for (Viesti v : kaikkiViestit) {
+
+            if (v.getKayttaja() == id) {
+                kayttajanViestit.add(v);
+            }
+        }
+
+        Kayttaja k = new Kayttaja(id, nimimerkki, kayttajanViestit);
 
         rs.close();
         stmt.close();
@@ -57,7 +70,17 @@ public class KayttajaDao implements Dao<Kayttaja, Integer> {
             Integer id = rs.getInt("id");
             String nimimerkki = rs.getString("nimimerkki");
 
-            kayttajat.add(new Kayttaja(id, nimimerkki));
+            List<Viesti> kaikkiViestit = viestiDao.findAll();
+            List<Viesti> kayttajanViestit = new ArrayList<>();
+
+            for (Viesti v : kaikkiViestit) {
+
+                if (v.getKayttaja() == id) {
+                    kayttajanViestit.add(v);
+                }
+            }
+
+            kayttajat.add(new Kayttaja(id, nimimerkki, kayttajanViestit));
         }
 
         rs.close();

@@ -17,13 +17,9 @@ import tikape.runko.domain.Viestiketju;
 public class ViestiDao implements Dao<Viesti, Integer> {
 
     private Database database;
-    private ViestiketjuDao viestiketjuDao;
-    private KayttajaDao kayttajaDao;
 
     public ViestiDao(Database database) {
         this.database = database;
-        this.viestiketjuDao = new ViestiketjuDao(database);
-        this.kayttajaDao = new KayttajaDao(database);
     }
 
     @Override
@@ -41,13 +37,13 @@ public class ViestiDao implements Dao<Viesti, Integer> {
             return null;
         }
 
-        Integer id = rs.getInt("id");
+//        Integer id = rs.getInt("id");
         String viesti = rs.getString("viesti");
         String timestamp = rs.getString("timestamp");
-        Kayttaja kayttaja = this.kayttajaDao.findOne(rs.getInt("kayttaja"));
-        Viestiketju viestiketju = this.viestiketjuDao.findOne(rs.getInt("viestiketju"));
+        Integer kayttaja = rs.getInt("kayttaja");
+        Integer viestiketju = rs.getInt("viestiketju");
 
-        Viesti v = new Viesti(id, viesti, timestamp, kayttaja, viestiketju);
+        Viesti v = new Viesti(viesti, timestamp, kayttaja, viestiketju);
 
         rs.close();
         stmt.close();
@@ -66,13 +62,13 @@ public class ViestiDao implements Dao<Viesti, Integer> {
 
         while (rs.next()) {
 
-            Integer id = rs.getInt("id");
+//            Integer id = rs.getInt("id");
             String viesti = rs.getString("viesti");
             String timestamp = rs.getString("timestamp");
-            Kayttaja kayttaja = this.kayttajaDao.findOne(rs.getInt("kayttaja"));
-            Viestiketju viestiketju = this.viestiketjuDao.findOne(rs.getInt("viestiketju"));
+            Integer kayttaja = rs.getInt("kayttaja");
+            Integer viestiketju = rs.getInt("viestiketju");
 
-            viestit.add(new Viesti(id, viesti, timestamp, kayttaja, viestiketju));
+            viestit.add(new Viesti(viesti, timestamp, kayttaja, viestiketju));
         }
 
         rs.close();

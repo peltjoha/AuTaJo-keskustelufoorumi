@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import tikape.runko.domain.Alue;
+import tikape.runko.domain.Viestiketju;
 
 /**
  *
@@ -15,9 +16,11 @@ import tikape.runko.domain.Alue;
 public class AlueDao implements Dao<Alue, Integer> {
 
     private Database database;
-    
-    public AlueDao(Database database) {
+    private ViestiketjuDao viestiketjuDao;
+
+    public AlueDao(Database database, ViestiketjuDao viestiketjuDao) {
         this.database = database;
+        this.viestiketjuDao = viestiketjuDao;
     }
 
     @Override
@@ -38,7 +41,16 @@ public class AlueDao implements Dao<Alue, Integer> {
         Integer viestien_lm = rs.getInt("viestien_lm");
         String viimeisin_viesti = rs.getString("viimeisin_viesti");
 
-        Alue a = new Alue(id, nimi, viestien_lm, viimeisin_viesti);
+        List<Viestiketju> kaikkiViestiketjut = viestiketjuDao.findAll();
+        List<Viestiketju> alueenViestiketjut = new ArrayList<>();
+
+        for (Viestiketju vk : kaikkiViestiketjut) {
+
+            if (vk.getAlue().equals(nimi)) {
+                alueenViestiketjut.add(vk);
+            }
+        }
+        Alue a = new Alue(id, nimi, viestien_lm, viimeisin_viesti, alueenViestiketjut);
 
         rs.close();
         stmt.close();
@@ -62,7 +74,17 @@ public class AlueDao implements Dao<Alue, Integer> {
             Integer viestien_lm = rs.getInt("viestien_lm");
             String viimeisin_viesti = rs.getString("viimeisin_viesti");
 
-            alueet.add(new Alue(id, nimi, viestien_lm, viimeisin_viesti));
+            List<Viestiketju> kaikkiViestiketjut = viestiketjuDao.findAll();
+            List<Viestiketju> alueenViestiketjut = new ArrayList<>();
+
+            for (Viestiketju vk : kaikkiViestiketjut) {
+
+                if (vk.getAlue().equals(nimi)) {
+                    alueenViestiketjut.add(vk);
+                }
+            }
+
+            alueet.add(new Alue(id, nimi, viestien_lm, viimeisin_viesti, alueenViestiketjut));
         }
 
         rs.close();

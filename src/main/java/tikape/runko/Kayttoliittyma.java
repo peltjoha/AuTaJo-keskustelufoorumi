@@ -1,20 +1,30 @@
 package tikape.runko;
 
+import java.sql.SQLException;
 import java.util.*;
 import tikape.runko.database.*;
+import tikape.runko.domain.*;
 
 public class Kayttoliittyma {
 
     private Scanner lukija;
     private Database database;
+    private ViestiDao viestiDao;
+    private ViestiketjuDao viestiketjuDao;
+    private AlueDao alueDao;
+    private KayttajaDao kayttajaDao;
 
     public Kayttoliittyma(Database database, Scanner lukija) {
         this.lukija = lukija;
         this.database = database;
+        this.viestiDao = new ViestiDao(this.database);
+        this.viestiketjuDao = new ViestiketjuDao(database, viestiDao);
+        this.alueDao = new AlueDao(database, viestiketjuDao);
+        this.kayttajaDao = new KayttajaDao(database, viestiDao);
     }
 
-    public void kaynnista() {
-
+    public void kaynnista() throws SQLException {
+        
         while (true) {
 
             System.out.println("Valitse mitä haluat käsitellä:");
@@ -48,13 +58,14 @@ public class Kayttoliittyma {
         }
     }
 
-    private void alueet() {
+    private void alueet() throws SQLException {
 
         while (true) {
+            System.out.println("");
             System.out.println("Alueet:");
             System.out.println("(1) Listaa alueet");
             System.out.println("(0) Poistu");
-            System.out.println("> ");
+            System.out.print("> ");
 
             String vastaus = lukija.nextLine();
 
@@ -62,8 +73,12 @@ public class Kayttoliittyma {
                 break;
             }
             if (vastaus.equals("1")) {
-
-                // hae ja tulosta näytölle alueet tietokannasta
+                
+                List<Alue> alueet = alueDao.findAll();
+                
+                for (Alue alue : alueet) {
+                    System.out.println(alue);
+                }
             }
         }
     }

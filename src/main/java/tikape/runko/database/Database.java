@@ -40,16 +40,10 @@ public class Database {
 
         // oikeiden tietokantataulujen luomiseen ja alkuun tarvittavat komennot 
         // suoritusjärjestyksessä, kuten alla
-
-
-
-
-
 //        lista.add("CREATE TABLE Opiskelija (id integer PRIMARY KEY, nimi varchar(255));");
 //        lista.add("INSERT INTO Opiskelija (nimi) VALUES ('Platon');");
 //        lista.add("INSERT INTO Opiskelija (nimi) VALUES ('Aristoteles');");
 //        lista.add("INSERT INTO Opiskelija (nimi) VALUES ('Homeros');");
-
         return lista;
     }
 }

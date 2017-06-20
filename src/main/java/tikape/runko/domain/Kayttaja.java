@@ -5,18 +5,22 @@
  */
 package tikape.runko.domain;
 
+import java.util.List;
+
 /**
  *
  * @author jipel
  */
 public class Kayttaja {
-    
+
     private Integer id;
     private String nimimerkki;
+    private List<Viesti> kayttajanViestit;
 
-    public Kayttaja(Integer id, String nimimerkki) {
+    public Kayttaja(Integer id, String nimimerkki, List<Viesti> kayttajanViestit) {
         this.id = id;
         this.nimimerkki = nimimerkki;
+        this.kayttajanViestit = kayttajanViestit;
     }
 
     public Integer getId() {
@@ -35,4 +39,11 @@ public class Kayttaja {
         this.nimimerkki = nimimerkki;
     }
 
+    public List<Viesti> getKayttajanViestit() {
+        return kayttajanViestit;
+    }
+
+    public void setKayttajanViestit(List<Viesti> kayttajanViestit) {
+        this.kayttajanViestit = kayttajanViestit;
+    }
 }

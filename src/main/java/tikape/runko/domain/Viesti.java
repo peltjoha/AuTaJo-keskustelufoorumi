@@ -15,28 +15,20 @@ import java.util.Date;
  */
 public class Viesti {
 
-    private Integer id;
+
     private String viesti;
     private String timestamp;
-    private Kayttaja kayttaja;
-    private Viestiketju viestiketju;
+    private Integer kayttaja;
+    private Integer viestiketju;
 
-    public Viesti(Integer id, String viesti, String timestamp, Kayttaja kayttaja, Viestiketju viestiketju) {
-        this.id = id;
+    public Viesti(String viesti, String timestamp, Integer kayttaja, Integer viestiketju) {
+
         this.viesti = viesti;
         this.timestamp = timestamp;
         this.kayttaja = kayttaja;
         this.viestiketju = viestiketju;
     }
     
-    public Integer getId() {
-        return id;
-    }
-    
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getTimestamp() {
         return timestamp; // palautetaan tässä vain olemassaoleva aikaleima
     }
@@ -53,27 +45,27 @@ public class Viesti {
         this.viesti = viesti;
     }
 
-    public Kayttaja getKayttaja() {
+    public int getKayttaja() {
 
         return kayttaja;
     }
 
-    public void setKayttaja(Kayttaja kayttaja) {
+    public void setKayttaja(int kayttaja) {
         this.kayttaja = kayttaja;
     }
 
-    public Viestiketju getViestiketju() {
+    public int getViestiketju() {
 
         return viestiketju;
     }
 
-    public void setViestiketju(Viestiketju viestiketju) {
+    public void setViestiketju(int viestiketju) {
         this.viestiketju = viestiketju;
     }
 
     @Override
     public String toString() {
-        return "Viesti{" + "id=" + id + ", viesti=" + viesti + ", timestamp=" + timestamp + ", kayttaja=" + kayttaja + ", viestiketju=" + viestiketju + '}';
+        return "Viesti{" + "viesti=" + viesti + ", timestamp=" + timestamp + ", kayttaja=" + kayttaja + ", viestiketju=" + viestiketju + '}';
     }
 
 }

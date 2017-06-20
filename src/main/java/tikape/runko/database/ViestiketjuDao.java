@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import tikape.runko.domain.Viesti;
 import tikape.runko.domain.Viestiketju;
 
 /**
@@ -15,16 +16,18 @@ import tikape.runko.domain.Viestiketju;
 public class ViestiketjuDao implements Dao<Viestiketju, Integer> {
 
     private Database database;
-    
-    public ViestiketjuDao(Database database) {
+    private ViestiDao viestiDao;
+
+    public ViestiketjuDao(Database database, ViestiDao viestiDao) {
         this.database = database;
+        this.viestiDao = viestiDao;
     }
 
     @Override
     public Viestiketju findOne(Integer key) throws SQLException {
 
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Alue WHERE id = ?");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viestiketju WHERE id = ?");
         stmt.setObject(1, key);
 
         ResultSet rs = stmt.executeQuery();
@@ -37,7 +40,17 @@ public class ViestiketjuDao implements Dao<Viestiketju, Integer> {
         String otsikko = rs.getString("otsikko");
         String alue = rs.getString("alue");
 
-        Viestiketju vk = new Viestiketju(id, otsikko, alue);
+        List<Viesti> kaikkiViestit = viestiDao.findAll();
+        List<Viesti> ketjunViestit = new ArrayList<>();
+
+        for (Viesti v : kaikkiViestit) {
+
+            if (v.getViestiketju() == id) {
+                ketjunViestit.add(v);
+            }
+        }
+
+        Viestiketju vk = new Viestiketju(id, otsikko, alue, ketjunViestit);
 
         rs.close();
         stmt.close();
@@ -49,7 +62,7 @@ public class ViestiketjuDao implements Dao<Viestiketju, Integer> {
     @Override
     public List<Viestiketju> findAll() throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Alue");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viestiketju");
 
         ResultSet rs = stmt.executeQuery();
         List<Viestiketju> ketjut = new ArrayList<>();
@@ -60,7 +73,17 @@ public class ViestiketjuDao implements Dao<Viestiketju, Integer> {
             String otsikko = rs.getString("otsikko");
             String alue = rs.getString("alue");
 
-            ketjut.add(new Viestiketju(id, otsikko, alue));
+            List<Viesti> kaikkiViestit = viestiDao.findAll();
+            List<Viesti> ketjunViestit = new ArrayList<>();
+
+            for (Viesti v : kaikkiViestit) {
+
+                if (v.getViestiketju() == id) {
+                    ketjunViestit.add(v);
+                }
+            }
+
+            ketjut.add(new Viestiketju(id, otsikko, alue, ketjunViestit));
         }
 
         rs.close();
