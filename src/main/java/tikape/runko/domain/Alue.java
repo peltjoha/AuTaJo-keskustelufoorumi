@@ -51,7 +51,6 @@ public class Alue {
     }
 
     public String getViimeisin_viesti() {
-        String viimeisin_viesti = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date());
         return viimeisin_viesti;
     }
     
