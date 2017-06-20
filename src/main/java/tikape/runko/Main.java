@@ -18,11 +18,13 @@ public class Main {
         database.init();
 
         // Tekstikäyttöliittymän käynnistys
-        
         Scanner lukija = new Scanner(System.in);
         Kayttoliittyma kayttis = new Kayttoliittyma(database, lukija);
+
+        // Jätetään tekstikäyttöliittymä käynnistämättä jos ei tarvitse
+        // kayttis.kaynnista();
         
-        kayttis.kaynnista();
+        
         
         ViestiDao viestiDao = new ViestiDao(database);
         ViestiketjuDao viestiketjuDao = new ViestiketjuDao(database, viestiDao);
@@ -63,7 +65,7 @@ public class Main {
 //                <input type="submit" value="Luo keskustelunavaus"/>
 //                </form>;
         }, new ThymeleafTemplateEngine());
-        
+
 //        // alueen luominen
 //        post("/alueet", (req, res) -> {
 //            String nimi = req.queryParams("nimi");

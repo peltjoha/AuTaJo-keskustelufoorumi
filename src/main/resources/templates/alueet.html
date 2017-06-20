@@ -7,10 +7,11 @@
     </head>
 
     <body>
-        <h1>Heippa vaan!</h1>
-
-        <p>Ja .. <span th:text="${viesti}">jotain?</span></p>
-
-        <p><a href="/alueet">Tästä aluelistaukseen.</a></p>
+        <h2>Keskustelualueet:</h2>
+        <ul>
+            <li th:each="alue: ${alueet}">
+                <span th:text="${alue.id}">10</span> <span th:text="${alue.nimi}">Essi esimerkki</span>
+            </li>
+        </ul>
     </body>
 </html>
