@@ -40,6 +40,11 @@ public class Main {
             map.put("alueet", alueDao.findAll());
 
             return new ModelAndView(map, "alueet");
+//                    + "<form method=\"POST\" action=\"/alueet\">\n"
+//                    + "Nimi:<br/>\n"
+//                    + "<input type=\"text\" name=\"nimi\"/><br/>\n"
+//                    + "<input type=\"submit\" value=\"Lisää alue\"/>\n"
+//                    + "</form>";
         }, new ThymeleafTemplateEngine());
 
         get("/alueet/:id", (req, res) -> {
@@ -47,6 +52,39 @@ public class Main {
             map.put("alue", alueDao.findOne(Integer.parseInt(req.params("id"))));
 
             return new ModelAndView(map, "alue");
+//                <form method="POST" action="/alueet/:id">
+//                Otsikko:<br/>
+//                <input type="text" name="otsikko"/><br/>
+//                Viesti:<br/>
+//                <input type="text" name="viesti"/><br/>
+//                Lähettäjä:<br/>
+//                <input type="text" name="kayttaja"/><br/>
+//                <input type="submit" value="Luo keskustelunavaus"/>
+//                </form>;
         }, new ThymeleafTemplateEngine());
+        
+//        // alueen luominen
+//        post("/alueet", (req, res) -> {
+//            String nimi = req.queryParams("nimi");
+//
+//            Alue alue = AlueDao.setNimi(nimi);
+//            
+//            res.redirect("/");
+//
+//        });
+//        
+//        // uuden keskustelunavauksen luominen
+//        post("/alueet/:id", (req, res) -> {
+//            String otsikko = req.queryParams("otsikko");
+//            String viesti = req.queryParams("viesti");
+//            String kayttaja = req.queryParams("kayttaja");
+//
+//            Viestiketju viestiketju = ViestiketjuDao.setOtsikko(otsikko);
+//            Viesti viesti = ViestiDao.setViesti(viesti);
+//            Kayttaja kayttaja = KayttajaDao.setNimimerkki(kayttaja);
+//            
+//            res.redirect("/s/alueet/";
+//
+//        });
     }
 }
