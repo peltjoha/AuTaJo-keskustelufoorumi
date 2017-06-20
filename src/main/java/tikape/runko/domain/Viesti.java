@@ -71,4 +71,9 @@ public class Viesti {
         this.viestiketju = viestiketju;
     }
 
+    @Override
+    public String toString() {
+        return "Viesti{" + "id=" + id + ", viesti=" + viesti + ", timestamp=" + timestamp + ", kayttaja=" + kayttaja + ", viestiketju=" + viestiketju + '}';
+    }
+
 }

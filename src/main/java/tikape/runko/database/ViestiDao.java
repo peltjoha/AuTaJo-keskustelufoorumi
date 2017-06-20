@@ -20,10 +20,10 @@ public class ViestiDao implements Dao<Viesti, Integer> {
     private ViestiketjuDao viestiketjuDao;
     private KayttajaDao kayttajaDao;
 
-    public ViestiDao(Database database, ViestiketjuDao viestiketjuDao, KayttajaDao kayttajaDao) {
+    public ViestiDao(Database database) {
         this.database = database;
-        this.viestiketjuDao = viestiketjuDao;
-        this.kayttajaDao = kayttajaDao;
+        this.viestiketjuDao = new ViestiketjuDao(database);
+        this.kayttajaDao = new KayttajaDao(database);
     }
 
     @Override
