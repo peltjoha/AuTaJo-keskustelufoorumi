@@ -27,6 +27,7 @@ public class Main {
         ViestiDao viestiDao = new ViestiDao(database);
         ViestiketjuDao viestiketjuDao = new ViestiketjuDao(database, viestiDao);
         AlueDao alueDao = new AlueDao(database, viestiketjuDao);
+        KayttajaDao kayttajaDao = new KayttajaDao(database, viestiDao);
 
         get("/", (req, res) -> {
             HashMap map = new HashMap<>();
